@@ -148,15 +148,7 @@ class createAccountTableView: UITableViewController,UIPickerViewDelegate,UIPicke
                             print(error)
                         } else {
                             //Successfully Signed up new account
-                            //Log into app
-                            Auth.auth().signIn(withEmail: emailAddressData, password: passwordData, completion: {(firUser, error) in
-                                if let error = error {
-                                    print(error)
-                                } else {
-                                    self.dismiss(animated: false, completion: nil)
-                                }
-                            })
-                            
+                            self.dismiss(animated: false, completion: nil)
                         }
                     })
                 }

@@ -12,15 +12,16 @@ import Firebase
 class WelcomeViewController: UIViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
-    override func viewDidLoad() {
-        //super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         handle = Auth.auth().addStateDidChangeListener({(auth, user) in
             if user != nil {
                 // Just logged in successfully
-                self.dismiss(animated: false, completion: nil)
                 print("In App WelcomeViewController")
                 self.dismiss(animated: false, completion: nil)
+                //self.performSegue(withIdentifier: "showMainScreen", sender: nil)
+                
             } else {
                   print("In App Error WelcomeViewController")
             }
@@ -32,7 +33,7 @@ class WelcomeViewController: UIViewController {
         override func viewWillDisappear(_ animated: Bool) {
             //super.viewWillAppear(animated)
     
-            Auth.auth().removeStateDidChangeListener(handle!)
+            // Auth.auth().removeStateDidChangeListener(handle!)
         }
  
 }

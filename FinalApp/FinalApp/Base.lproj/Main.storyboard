@@ -195,6 +195,9 @@
                             <constraint firstItem="GJZ-J0-V6p" firstAttribute="top" secondItem="Dgq-cD-gxB" secondAttribute="top" id="ykt-Or-HwE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="H1p-Uh-vWS" kind="presentation" identifier="showMainScreen" id="5pd-Qd-rfX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWT-Ie-nHI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

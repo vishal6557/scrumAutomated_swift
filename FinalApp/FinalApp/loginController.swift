@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class loginController: UITableViewController {
 
@@ -30,6 +31,16 @@ class loginController: UITableViewController {
             alert.addAction(ok)
             alert.show()
             
+        }
+        else {
+            //Log into app
+            Auth.auth().signIn(withEmail: emailAddressData, password: passwordData, completion: {(firUser, error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    self.dismiss(animated: false, completion: nil)
+                }
+            })
         }
         
     }
