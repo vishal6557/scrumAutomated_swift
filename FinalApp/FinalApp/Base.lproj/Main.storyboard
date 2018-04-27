@@ -30,8 +30,8 @@
             <objects>
                 <viewController title="Detail" id="JEX-9P-axG" customClass="DetailViewController" customModule="FinalApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="k2N-tm-vCh"/>
-                        <viewControllerLayoutGuide type="bottom" id="FLB-7Z-9Ac"/>
+                        <viewControllerLayoutGuide type="top" id="Rte-HD-HKJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nby-SM-FFb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="svH-Pt-448">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -120,8 +120,8 @@
             <objects>
                 <viewController id="dKY-7y-pmc" customClass="WelcomeViewController" customModule="FinalApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Qyj-Fj-7SX"/>
-                        <viewControllerLayoutGuide type="bottom" id="PLR-du-TX1"/>
+                        <viewControllerLayoutGuide type="top" id="OAI-gU-kMc"/>
+                        <viewControllerLayoutGuide type="bottom" id="SAR-bu-HEL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Dgq-cD-gxB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -185,8 +185,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PLR-du-TX1" firstAttribute="top" secondItem="Qvq-hO-ZVX" secondAttribute="bottom" id="8EQ-RX-uGs"/>
-                            <constraint firstItem="PLR-du-TX1" firstAttribute="top" secondItem="GJZ-J0-V6p" secondAttribute="bottom" id="BKp-Cm-CQn"/>
+                            <constraint firstItem="SAR-bu-HEL" firstAttribute="top" secondItem="Qvq-hO-ZVX" secondAttribute="bottom" id="8EQ-RX-uGs"/>
+                            <constraint firstItem="SAR-bu-HEL" firstAttribute="top" secondItem="GJZ-J0-V6p" secondAttribute="bottom" id="BKp-Cm-CQn"/>
                             <constraint firstItem="Qvq-hO-ZVX" firstAttribute="top" secondItem="Dgq-cD-gxB" secondAttribute="top" id="HjG-eD-lBj"/>
                             <constraint firstAttribute="trailing" secondItem="Qvq-hO-ZVX" secondAttribute="trailing" id="M2p-mI-Jx4"/>
                             <constraint firstItem="Qvq-hO-ZVX" firstAttribute="leading" secondItem="Dgq-cD-gxB" secondAttribute="leading" id="U9K-WF-vbU"/>
@@ -349,6 +349,9 @@
                                                 <constraint firstAttribute="bottom" secondItem="Bj9-8h-VSZ" secondAttribute="bottom" constant="12.67" id="sn6-SJ-heT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
