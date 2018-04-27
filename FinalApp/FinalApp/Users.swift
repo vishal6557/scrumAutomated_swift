@@ -9,25 +9,20 @@ import Foundation
 
 
 class Users {
-    var userID: Int
+    var userID: String
     var emailAddress: String
     var name: String
-    var userType: Int
-    var password: String
-    init(name: String,emailAddress: String, userType: Int, userID: Int, password: String) {
+    var userType: String
+    init(name: String,emailAddress: String, userType: String, userID: String) {
         self.name = name
         self.emailAddress = emailAddress
         self.userType = userType
         self.userID = userID
-        self.password = password
     }
 }
 
 var totalUser = [Users]()
-var userIDCount:Int = 0
-
-func addUsers(name: String,emailAddress: String, userType: Int, password: String ) {
-    let count = userIDCount + 1
-    let User = Users(name: name,emailAddress: emailAddress, userType: userType, userID: count, password: password);
+func addUsers(userID: String,name: String,emailAddress: String, userType: String, password: String ) {
+    let User = Users(name: name, emailAddress: emailAddress, userType: userType, userID: userID);
     totalUser.append(User)
 }

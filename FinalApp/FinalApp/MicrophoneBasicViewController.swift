@@ -152,7 +152,8 @@ class MicrophoneBasicViewController: UIViewController {
                 }
                 let sentimentLabel = sentiment.document?.label?.firstUppercased
                 
-                addUserNotes(userID: totalUser[0].userID, taskNo: taskNo, description: self.resultsOfSpeaking, emotion: emotionString, sentiment: sentimentLabel!, progress: progress)
+                addUserNotes(taskNo: taskNo, description: self.resultsOfSpeaking, emotion: emotionString, sentiment: sentimentLabel!, progress: progress)
+                
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
             }
             

@@ -10,9 +10,13 @@ import UIKit
 import Firebase
 
 class MasterViewController: UITableViewController {
-
+    
     var detailViewController: DetailViewController? = nil
     var objects = [UserNotes]()
+    var userRole: String? = nil
+    
+    
+    
     
     func configureView() {
         // Update the user interface for the detail item.
@@ -21,14 +25,32 @@ class MasterViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        print("In App MasterViewController")
         // one time sign in if the user logs in already or not
+        
         Auth.auth().addStateDidChangeListener({(auth,user) in
             if user != nil {
                 // we do have the user. the user did log in
                 //TODO: fetch
-               // self.viewDidLoad()
-                print("In App MasterViewController")
+                // self.viewDidLoad()
+                var ref: DatabaseReference!
+                ref = Database.database().reference()
+                let userID = Auth.auth().currentUser?.uid
+                ref.child("users").child(userID!).observeSingleEvent(of: .value, with:  { (snapshot) in
+                    if let user = snapshot.value as? NSDictionary {
+                        let userType = user["userType"] as? String ?? ""
+                        self.userRole = userType
+                        if( userType == "Admin") {
+                            self.fetchDataForAdmin(ref: ref)
+                        } else
+                        {
+                            self.fetchDataForUser(ref: ref, userID: userID!)
+                        }
+                        
+                    }
+                })
+
+                
             } else {
                 // the user hasnt logged in screen
                 self.performSegue(withIdentifier: "ShowWelcome", sender: nil)
@@ -37,11 +59,68 @@ class MasterViewController: UITableViewController {
         
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        
-//    }
+    func fetchDataForAdmin(ref: DatabaseReference) {
+        ref.child("users").observeSingleEvent(of: .value, with: {(snapshot) in
+            let usersdict = snapshot.value as? NSDictionary
+            totalUser = []
+            
+            for (key, value) in usersdict! {
+                let user = value as? NSDictionary
+                let userID = user?["userID"] as? String ?? ""
+                let name = user?["name"] as? String ?? ""
+                let emailAddress = user?["emailAddress"] as? String ?? ""
+                let userType = user?["userType"] as? String ?? ""
+                let userData = Users(name: name, emailAddress: emailAddress, userType: userType, userID: userID)
+                totalUser.append(userData)
+            }
+        })
+        ref.child("notes").observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let notesdict = snapshot.value as? NSDictionary
+            totalUserNotes = []
+            for (key, value) in notesdict! {
+                let notes = value as? NSDictionary
+                let noteID = key as? String ?? ""
+                let userID = notes?["userID"] as? String ?? ""
+                let taskNo = notes?["taskNo"] as? Int64 ?? 0
+                let description = notes?["description"] as? String ?? ""
+                let emotion = notes?["emotion"] as? String ?? ""
+                let sentiment = notes?["sentiment"] as? String ?? ""
+                let date = notes?["date"] as? String ?? ""
+                let progress = notes?["progress"] as? Int64 ?? 0
+                let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
+                totalUserNotes.append(UserNote)
+            }
+            self.loadList()
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func fetchDataForUser(ref: DatabaseReference, userID: String) {
+        ref.child("users").child(userID).child("user_notes").observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let notesdict = snapshot.value as? NSDictionary
+            totalUserNotes = []
+            for (key, value) in notesdict! {
+                let notes = value as? NSDictionary
+                let noteID = key as? String ?? ""
+                let userID = notes?["userID"] as? String ?? ""
+                let taskNo = notes?["taskNo"] as? Int64 ?? 0
+                let description = notes?["description"] as? String ?? ""
+                let emotion = notes?["emotion"] as? String ?? ""
+                let sentiment = notes?["sentiment"] as? String ?? ""
+                let date = notes?["date"] as? String ?? ""
+                let progress = notes?["progress"] as? Int64 ?? 0
+                let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
+                totalUserNotes.append(UserNote)
+            }
+            self.loadList()
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
     
     @IBAction func logOutDidTap(_ sender: UIBarButtonItem) {
         
@@ -51,7 +130,6 @@ class MasterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addUsers(name: "Rakshit Shah",emailAddress: "rakshitshah7@gmail.com", userType: 0, password: "password")
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
         
@@ -62,19 +140,20 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
-         configureView()
+       
+        configureView()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @objc
     func insertNewObject(_ sender: Any) {
         let acvc = MicrophoneBasicViewController(nibName: "MicrophoneBasicViewController", bundle:nil)
@@ -86,9 +165,9 @@ class MasterViewController: UITableViewController {
         configureView()
         self.tableView.reloadData()
     }
-
+    
     // MARK: - Segues
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -100,31 +179,40 @@ class MasterViewController: UITableViewController {
             }
         }
     }
-
+    
     // MARK: - Table View
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objects.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
+        
         let object = objects[indexPath.row]
-        cell.textLabel!.text = "Task No - \(object.taskNo)"
-        cell.detailTextLabel!.text = object.date
+        if( userRole! == "Admin") {
+            let index = totalUser.index(where: { (item) -> Bool in
+                item.userID == object.userID // test if this is the item you're looking for
+            })
+            cell.textLabel!.text = "Name - \(totalUser[index!].name)"
+            cell.detailTextLabel!.text = object.date
+        } else
+        {
+            cell.textLabel!.text = "Task No - \(object.taskNo)"
+            cell.detailTextLabel!.text = object.date
+        }
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             objects.remove(at: indexPath.row)
@@ -133,7 +221,7 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-
-
+    
+    
 }
 

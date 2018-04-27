@@ -20,7 +20,6 @@ class User {
         self.emailAddress = emailAddress
         self.userType = userType
         self.userID = userID
-        //self.password = password
         self.profileImage = profileImage
     }
     

@@ -14,6 +14,7 @@
 		D42CDFCA2092CD18005F9FF7 /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CDFC92092CD18005F9FF7 /* FirebaseReference.swift */; };
 		D42CDFCC2092D33E005F9FF7 /* FIRImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CDFCB2092D33E005F9FF7 /* FIRImage.swift */; };
 		D42CDFCF2092DA22005F9FF7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CDFCD2092D993005F9FF7 /* User.swift */; };
+		D444F1B720938428000B9C24 /* UsersNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D444F1B620938428000B9C24 /* UsersNotes.swift */; };
 		D476A5E0209168E800471620 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476A5DF209168E800471620 /* Credentials.swift */; };
 		D476AF6C20916C2A00471620 /* NaturalLanguageUnderstandingV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D476AF4E20916C0E00471620 /* NaturalLanguageUnderstandingV1.framework */; };
 		D476AF6E20916C2A00471620 /* SpeechToTextV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D476AF5620916C0E00471620 /* SpeechToTextV1.framework */; };
@@ -22,7 +23,6 @@
 		D476AF762091736A00471620 /* MicrophoneBasicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D476AF742091736A00471620 /* MicrophoneBasicViewController.xib */; };
 		D476AF782092662F00471620 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476AF772092662F00471620 /* Users.swift */; };
 		D476AF7A2092666200471620 /* UserNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476AF792092666200471620 /* UserNotes.swift */; };
-		D476AF7C209287B200471620 /* scrum.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D476AF7B209287B200471620 /* scrum.jpg */; };
 		D476AF7E209288D500471620 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D476AF7D209288D400471620 /* Assets.xcassets */; };
 		D476AF8020929C2F00471620 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D476AF7F20929C2F00471620 /* GoogleService-Info.plist */; };
 		D476AF8220929D0C00471620 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D476AF8120929D0C00471620 /* Podfile */; };
@@ -311,6 +311,7 @@
 		D42CDFC92092CD18005F9FF7 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
 		D42CDFCB2092D33E005F9FF7 /* FIRImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRImage.swift; sourceTree = "<group>"; };
 		D42CDFCD2092D993005F9FF7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D444F1B620938428000B9C24 /* UsersNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersNotes.swift; sourceTree = "<group>"; };
 		D454187C20930BCD00225112 /* .cocoapods.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .cocoapods.yml; sourceTree = "<group>"; };
 		D454187D20930BCD00225112 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		D454188020930BCD00225112 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
@@ -2424,10 +2425,9 @@
 		D476AF742091736A00471620 /* MicrophoneBasicViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MicrophoneBasicViewController.xib; sourceTree = "<group>"; };
 		D476AF772092662F00471620 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		D476AF792092666200471620 /* UserNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotes.swift; sourceTree = "<group>"; };
-		D476AF7B209287B200471620 /* scrum.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = scrum.jpg; path = ../../../../../../Users/vishaldiyora/Downloads/scrum.jpg; sourceTree = "<group>"; };
 		D476AF7D209288D400471620 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D476AF7F20929C2F00471620 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D476AF8120929D0C00471620 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		D476AF8120929D0C00471620 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D47A191C20930E2D009E3B4A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		D4B5216F209163D400853563 /* FinalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B52172209163D400853563 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -2470,6 +2470,7 @@
 				D42CDFC92092CD18005F9FF7 /* FirebaseReference.swift */,
 				D42CDFCB2092D33E005F9FF7 /* FIRImage.swift */,
 				D42CDFCD2092D993005F9FF7 /* User.swift */,
+				D444F1B620938428000B9C24 /* UsersNotes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2477,6 +2478,7 @@
 		D42CDFD12092FFDA005F9FF7 /* User Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				D42CDFC62092C509005F9FF7 /* loginController.swift */,
 				D42CDFC22092B405005F9FF7 /* createAccountTableView.swift */,
 				D47A191C20930E2D009E3B4A /* WelcomeViewController.swift */,
 			);
@@ -8190,14 +8192,12 @@
 				D476AF742091736A00471620 /* MicrophoneBasicViewController.xib */,
 				D476AF7D209288D400471620 /* Assets.xcassets */,
 				D4B52178209163D400853563 /* Main.storyboard */,
-				D476AF7B209287B200471620 /* scrum.jpg */,
 				D4B5217D209163D400853563 /* LaunchScreen.storyboard */,
 				D476A5DF209168E800471620 /* Credentials.swift */,
 				D4B52180209163D400853563 /* Info.plist */,
 				D476AF772092662F00471620 /* Users.swift */,
 				D476AF792092666200471620 /* UserNotes.swift */,
 				D42CDFC42092BFDE005F9FF7 /* common.swift */,
-				D42CDFC62092C509005F9FF7 /* loginController.swift */,
 			);
 			path = FinalApp;
 			sourceTree = "<group>";
@@ -8568,7 +8568,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4B5217F209163D400853563 /* LaunchScreen.storyboard in Resources */,
-				D476AF7C209287B200471620 /* scrum.jpg in Resources */,
 				D476AF762091736A00471620 /* MicrophoneBasicViewController.xib in Resources */,
 				D4B5217A209163D400853563 /* Main.storyboard in Resources */,
 				D476AF7E209288D500471620 /* Assets.xcassets in Resources */,
@@ -8655,6 +8654,7 @@
 				D42CDFC32092B405005F9FF7 /* createAccountTableView.swift in Sources */,
 				D476AF782092662F00471620 /* Users.swift in Sources */,
 				D42CDFCC2092D33E005F9FF7 /* FIRImage.swift in Sources */,
+				D444F1B720938428000B9C24 /* UsersNotes.swift in Sources */,
 				D42CDFCA2092CD18005F9FF7 /* FirebaseReference.swift in Sources */,
 				D4B52173209163D400853563 /* AppDelegate.swift in Sources */,
 				D47A191D20930E2D009E3B4A /* WelcomeViewController.swift in Sources */,
