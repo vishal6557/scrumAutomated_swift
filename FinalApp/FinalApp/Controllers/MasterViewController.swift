@@ -65,8 +65,8 @@ class MasterViewController: UITableViewController {
         ref.child("users").observeSingleEvent(of: .value, with: {(snapshot) in
             let usersdict = snapshot.value as? NSDictionary
             totalUser = []
-            
-            for (key, value) in usersdict! {
+            if let usersdic = usersdict {
+            for (key, value) in usersdic {
                 let user = value as? NSDictionary
                 let userID = user?["userID"] as? String ?? ""
                 let name = user?["name"] as? String ?? ""
@@ -75,12 +75,14 @@ class MasterViewController: UITableViewController {
                 let userData = Users(name: name, emailAddress: emailAddress, userType: userType, userID: userID)
                 totalUser.append(userData)
             }
+            }
         })
         ref.child("notes").observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let notesdict = snapshot.value as? NSDictionary
             totalUserNotes = []
-            for (key, value) in notesdict! {
+            if let notesdic = notesdict {
+            for (key, value) in notesdic{
                 let notes = value as? NSDictionary
                 let noteID = key as? String ?? ""
                 let userID = notes?["userID"] as? String ?? ""
@@ -92,6 +94,7 @@ class MasterViewController: UITableViewController {
                 let progress = notes?["progress"] as? Int64 ?? 0
                 let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
                 totalUserNotes.append(UserNote)
+            }
             }
             self.loadList()
         }) { (error) in
@@ -104,7 +107,8 @@ class MasterViewController: UITableViewController {
             // Get user value
             let notesdict = snapshot.value as? NSDictionary
             totalUserNotes = []
-            for (key, value) in notesdict! {
+            if let notesdic = notesdict {
+                for (key, value) in notesdic {
                 let notes = value as? NSDictionary
                 let noteID = key as? String ?? ""
                 let userID = notes?["userID"] as? String ?? ""
@@ -116,6 +120,7 @@ class MasterViewController: UITableViewController {
                 let progress = notes?["progress"] as? Int64 ?? 0
                 let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
                 totalUserNotes.append(UserNote)
+            }
             }
             self.loadList()
         }) { (error) in
