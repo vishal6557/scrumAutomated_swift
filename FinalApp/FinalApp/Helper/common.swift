@@ -18,17 +18,10 @@ func validatePhone(value: String) -> Bool {
 }
 
 
-func validateName(value: String) -> Bool {
-    let NAME_REGEX = "\\A\\w{7,18}\\z"
+func validateEmail(emailAddressString: String) -> Bool {
+    let NAME_REGEX = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
     let nameTest = NSPredicate(format: "SELF MATCHES %@", NAME_REGEX)
-    let result =  nameTest.evaluate(with: value)
+    let result =  nameTest.evaluate(with: emailAddressString)
     return result
 }
-
-//func alertFunction(title:String, message:String){
-//    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//    let ok = UIAlertAction(title: "OK", style: .cancel, handler: { (action) -> Void in })
-//    alert.addAction(ok)
-//    self.present(alert, animated: true)
-//}
 

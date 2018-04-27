@@ -26,17 +26,20 @@ class loginController: UITableViewController {
         let passwordData:String =  password.text ?? "nil"
         
         if(emailAddressData == nil  || (passwordData ?? "").isEmpty) {
-            let alert = UIAlertController(title: "Invalid Input", message: "Please enter the correct details", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .cancel, handler: { (action) -> Void in })
-            alert.addAction(ok)
-            alert.show()
-            
+//            let alert = UIAlertController(title: "Invalid Input", message: "Please enter the correct details", preferredStyle: .alert)
+//            let ok = UIAlertAction(title: "OK", style: .cancel, handler: { (action) -> Void in })
+//            alert.addAction(ok)
+//            alert.show()
+            displayAlert(title: "Field Empty", message: "Field should not be empty to login")
         }
         else {
             //Log into app
             Auth.auth().signIn(withEmail: emailAddressData, password: passwordData, completion: {(firUser, error) in
                 if let error = error {
+                    let newerror = error as! NSError
+                    print("Navi error",newerror.userInfo["error_name"])
                     print(error)
+                    displayAlert(title: newerror.userInfo["error_name"] as! String, message: error.localizedDescription)
                 } else {
                     self.dismiss(animated: false, completion: nil)
                 }
