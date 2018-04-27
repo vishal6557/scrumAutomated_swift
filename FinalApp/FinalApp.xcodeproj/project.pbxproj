@@ -2478,11 +2478,32 @@
 		D42CDFD12092FFDA005F9FF7 /* User Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				D476A5DF209168E800471620 /* Credentials.swift */,
 				D42CDFC62092C509005F9FF7 /* loginController.swift */,
 				D42CDFC22092B405005F9FF7 /* createAccountTableView.swift */,
 				D47A191C20930E2D009E3B4A /* WelcomeViewController.swift */,
 			);
 			path = "User Authentication";
+			sourceTree = "<group>";
+		};
+		D444F1B92093BFD0000B9C24 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D476AF772092662F00471620 /* Users.swift */,
+				D476AF792092666200471620 /* UserNotes.swift */,
+				D42CDFC42092BFDE005F9FF7 /* common.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		D444F1BA2093C018000B9C24 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4B52174209163D400853563 /* MasterViewController.swift */,
+				D4B52176209163D400853563 /* DetailViewController.swift */,
+				D476AF732091736A00471620 /* MicrophoneBasicViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		D454187A20930BCD00225112 /* Pods */ = {
@@ -8181,23 +8202,18 @@
 		D4B52171209163D400853563 /* FinalApp */ = {
 			isa = PBXGroup;
 			children = (
+				D444F1BA2093C018000B9C24 /* Controllers */,
+				D444F1B92093BFD0000B9C24 /* Helper */,
 				D42CDFD12092FFDA005F9FF7 /* User Authentication */,
 				D42CDFC82092CCDB005F9FF7 /* Model */,
 				D476AF8120929D0C00471620 /* Podfile */,
 				D476AF7F20929C2F00471620 /* GoogleService-Info.plist */,
 				D4B52172209163D400853563 /* AppDelegate.swift */,
-				D4B52174209163D400853563 /* MasterViewController.swift */,
-				D4B52176209163D400853563 /* DetailViewController.swift */,
-				D476AF732091736A00471620 /* MicrophoneBasicViewController.swift */,
 				D476AF742091736A00471620 /* MicrophoneBasicViewController.xib */,
 				D476AF7D209288D400471620 /* Assets.xcassets */,
 				D4B52178209163D400853563 /* Main.storyboard */,
 				D4B5217D209163D400853563 /* LaunchScreen.storyboard */,
-				D476A5DF209168E800471620 /* Credentials.swift */,
 				D4B52180209163D400853563 /* Info.plist */,
-				D476AF772092662F00471620 /* Users.swift */,
-				D476AF792092666200471620 /* UserNotes.swift */,
-				D42CDFC42092BFDE005F9FF7 /* common.swift */,
 			);
 			path = FinalApp;
 			sourceTree = "<group>";

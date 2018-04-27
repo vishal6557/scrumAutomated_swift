@@ -39,7 +39,9 @@ class MasterViewController: UITableViewController {
                 ref.child("users").child(userID!).observeSingleEvent(of: .value, with:  { (snapshot) in
                     if let user = snapshot.value as? NSDictionary {
                         let userType = user["userType"] as? String ?? ""
+                        let userName = user["name"] as? String ?? ""
                         self.userRole = userType
+                        self.navigationItem.title = userName
                         if( userType == "Admin") {
                             self.fetchDataForAdmin(ref: ref)
                         } else
@@ -130,10 +132,14 @@ class MasterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let user = userRole{
+            print("I am here ->>>>>>> \(user)")
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
         
-        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         navigationItem.rightBarButtonItems?.append(addButton)
         if let split = splitViewController {
@@ -215,6 +221,18 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let noteID = objects[indexPath.row].noteID
+            let userID = objects[indexPath.row].userID
+            
+            let ref = Database.database().reference()
+            let noteRef = ref.child("notes").child(noteID)
+            let userRef = ref.child("users").child(userID).child("user_notes").child(noteID)
+            noteRef.removeValue { error, _ in
+                print(error)
+            }
+            userRef.removeValue { error, _ in
+                print(error)
+            }
             objects.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
