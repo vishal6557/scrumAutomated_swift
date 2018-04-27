@@ -24,6 +24,8 @@ class MicrophoneBasicViewController: UIViewController {
     var isStreaming = false
     var resultsOfSpeaking = ""
     
+    
+    @IBOutlet weak var back: UIButton!
     @IBOutlet weak var microphoneButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     
@@ -37,7 +39,9 @@ class MicrophoneBasicViewController: UIViewController {
     
     
     
-    
+    @IBAction func backButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func didPressMicrophoneButton(_ sender: UIButton) {
         if !isStreaming {
