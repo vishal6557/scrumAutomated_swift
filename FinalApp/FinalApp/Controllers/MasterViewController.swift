@@ -51,7 +51,7 @@ class MasterViewController: UITableViewController {
                         
                     }
                 })
-
+                
                 
             } else {
                 // the user hasnt logged in screen
@@ -66,15 +66,16 @@ class MasterViewController: UITableViewController {
             let usersdict = snapshot.value as? NSDictionary
             totalUser = []
             if let usersdic = usersdict {
-            for (key, value) in usersdic {
-                let user = value as? NSDictionary
-                let userID = user?["userID"] as? String ?? ""
-                let name = user?["name"] as? String ?? ""
-                let emailAddress = user?["emailAddress"] as? String ?? ""
-                let userType = user?["userType"] as? String ?? ""
-                let userData = Users(name: name, emailAddress: emailAddress, userType: userType, userID: userID)
-                totalUser.append(userData)
-            }
+                for (key, value) in usersdic {
+                    let user = value as? NSDictionary
+                    let userID = user?["userID"] as? String ?? ""
+                    let name = user?["name"] as? String ?? ""
+                    let emailAddress = user?["emailAddress"] as? String ?? ""
+                    let userType = user?["userType"] as? String ?? ""
+                    let imageURL = user?["profileImageURL"] as? String ?? ""
+                    let userData = Users(name: name, emailAddress: emailAddress, userType: userType, userID: userID, imageURL: imageURL)
+                    totalUser.append(userData)
+                }
             }
         })
         ref.child("notes").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -82,19 +83,19 @@ class MasterViewController: UITableViewController {
             let notesdict = snapshot.value as? NSDictionary
             totalUserNotes = []
             if let notesdic = notesdict {
-            for (key, value) in notesdic{
-                let notes = value as? NSDictionary
-                let noteID = key as? String ?? ""
-                let userID = notes?["userID"] as? String ?? ""
-                let taskNo = notes?["taskNo"] as? Int64 ?? 0
-                let description = notes?["description"] as? String ?? ""
-                let emotion = notes?["emotion"] as? String ?? ""
-                let sentiment = notes?["sentiment"] as? String ?? ""
-                let date = notes?["date"] as? String ?? ""
-                let progress = notes?["progress"] as? Int64 ?? 0
-                let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
-                totalUserNotes.append(UserNote)
-            }
+                for (key, value) in notesdic{
+                    let notes = value as? NSDictionary
+                    let noteID = key as? String ?? ""
+                    let userID = notes?["userID"] as? String ?? ""
+                    let taskNo = notes?["taskNo"] as? Int64 ?? 0
+                    let description = notes?["description"] as? String ?? ""
+                    let emotion = notes?["emotion"] as? String ?? ""
+                    let sentiment = notes?["sentiment"] as? String ?? ""
+                    let date = notes?["date"] as? String ?? ""
+                    let progress = notes?["progress"] as? Int64 ?? 0
+                    let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
+                    totalUserNotes.append(UserNote)
+                }
             }
             self.loadList()
         }) { (error) in
@@ -109,18 +110,18 @@ class MasterViewController: UITableViewController {
             totalUserNotes = []
             if let notesdic = notesdict {
                 for (key, value) in notesdic {
-                let notes = value as? NSDictionary
-                let noteID = key as? String ?? ""
-                let userID = notes?["userID"] as? String ?? ""
-                let taskNo = notes?["taskNo"] as? Int64 ?? 0
-                let description = notes?["description"] as? String ?? ""
-                let emotion = notes?["emotion"] as? String ?? ""
-                let sentiment = notes?["sentiment"] as? String ?? ""
-                let date = notes?["date"] as? String ?? ""
-                let progress = notes?["progress"] as? Int64 ?? 0
-                let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
-                totalUserNotes.append(UserNote)
-            }
+                    let notes = value as? NSDictionary
+                    let noteID = key as? String ?? ""
+                    let userID = notes?["userID"] as? String ?? ""
+                    let taskNo = notes?["taskNo"] as? Int64 ?? 0
+                    let description = notes?["description"] as? String ?? ""
+                    let emotion = notes?["emotion"] as? String ?? ""
+                    let sentiment = notes?["sentiment"] as? String ?? ""
+                    let date = notes?["date"] as? String ?? ""
+                    let progress = notes?["progress"] as? Int64 ?? 0
+                    let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
+                    totalUserNotes.append(UserNote)
+                }
             }
             self.loadList()
         }) { (error) in
@@ -141,7 +142,7 @@ class MasterViewController: UITableViewController {
             print("I am here ->>>>>>> \(user)")
         }
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
-
+        
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
         
@@ -151,7 +152,7 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
-       
+        
         configureView()
     }
     
@@ -209,7 +210,29 @@ class MasterViewController: UITableViewController {
             let index = totalUser.index(where: { (item) -> Bool in
                 item.userID == object.userID // test if this is the item you're looking for
             })
-            cell.textLabel!.text = "Name - \(totalUser[index!].name)"
+            let user = totalUser[index!]
+            let storage = Storage.storage()
+            if user.imageURL != "" {
+                storage.reference(forURL: user.imageURL).getMetadata(completion: { (metadata, error) in
+                    let userUrl = metadata?.downloadURL()
+                    if userUrl != nil {
+                        URLSession.shared.dataTask(with: userUrl!, completionHandler: {(data, response,error) in
+                            if error != nil {
+                                print(error)
+                                return
+                            }
+                            DispatchQueue.main.async(execute: {
+                                cell.imageView?.image = UIImage(data: data!)
+                                self.loadList()
+                            })
+                        } ).resume()
+                    }
+                })
+                
+                
+                //cell.imageView?.image = UIImage(named : "scrum")
+            }
+            cell.textLabel!.text = "Name - \(user.name)"
             cell.detailTextLabel!.text = object.date
         } else
         {
