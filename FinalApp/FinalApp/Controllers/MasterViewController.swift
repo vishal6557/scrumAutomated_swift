@@ -138,9 +138,6 @@ class MasterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let user = userRole{
-            print("I am here ->>>>>>> \(user)")
-        }
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -223,6 +220,8 @@ class MasterViewController: UITableViewController {
                             }
                             DispatchQueue.main.async(execute: {
                                 cell.imageView?.image = UIImage(data: data!)
+                                cell.imageView?.layer.cornerRadius = 20
+                                cell.imageView?.layer.masksToBounds = true
                                 self.loadList()
                             })
                         } ).resume()
@@ -267,7 +266,4 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-    
-    
 }
-
