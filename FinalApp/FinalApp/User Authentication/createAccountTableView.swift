@@ -182,7 +182,7 @@ class createAccountTableView: UITableViewController,UIPickerViewDelegate,UIPicke
                     let newerror = error! as NSError
                     
                     displayAlert(title:newerror.userInfo["error_name"] as! String , message: (error?.localizedDescription)!)
-                    print("Erorr Coming from here",error)
+                    
                 } else if let firUser = firUser {
                     let newUser = User(name: nameData, emailAddress: emailAddressData, userType: userTypeData, userID: firUser.uid, profileImage: profilePicData!)
                     newUser.save(completion: {(error) in
