@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2EB9E8BD2094330400E4C7CE /* gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB9E8BC2094330400E4C7CE /* gif.swift */; };
-		2EB9E8E02094340400E4C7CE /* 02_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2EB9E8DF2094340400E4C7CE /* 02_gif.gif */; };
-		2EB9E8E22094441800E4C7CE /* ibm.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2EB9E8E12094441800E4C7CE /* ibm.gif */; };
 		D3858DA1D5F225CBEA540E6B /* Pods_FinalApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E774406DC79BD22D5186E0C7 /* Pods_FinalApp.framework */; };
 		D42CDFC32092B405005F9FF7 /* createAccountTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CDFC22092B405005F9FF7 /* createAccountTableView.swift */; };
 		D42CDFC52092BFDE005F9FF7 /* common.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CDFC42092BFDE005F9FF7 /* common.swift */; };
@@ -307,9 +304,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2EB9E8BC2094330400E4C7CE /* gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gif.swift; sourceTree = "<group>"; };
-		2EB9E8DF2094340400E4C7CE /* 02_gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 02_gif.gif; sourceTree = "<group>"; };
-		2EB9E8E12094441800E4C7CE /* ibm.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ibm.gif; sourceTree = "<group>"; };
 		6F8420AD8A028C62A4AB1A0A /* Pods-FinalApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalApp/Pods-FinalApp.release.xcconfig"; sourceTree = "<group>"; };
 		D42CDFC22092B405005F9FF7 /* createAccountTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createAccountTableView.swift; sourceTree = "<group>"; };
 		D42CDFC42092BFDE005F9FF7 /* common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = common.swift; sourceTree = "<group>"; };
@@ -2495,12 +2489,9 @@
 		D444F1B92093BFD0000B9C24 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				2EB9E8E12094441800E4C7CE /* ibm.gif */,
-				2EB9E8DF2094340400E4C7CE /* 02_gif.gif */,
 				D476AF772092662F00471620 /* Users.swift */,
 				D476AF792092666200471620 /* UserNotes.swift */,
 				D42CDFC42092BFDE005F9FF7 /* common.swift */,
-				2EB9E8BC2094330400E4C7CE /* gif.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -8595,10 +8586,8 @@
 				D4B5217F209163D400853563 /* LaunchScreen.storyboard in Resources */,
 				D476AF762091736A00471620 /* MicrophoneBasicViewController.xib in Resources */,
 				D4B5217A209163D400853563 /* Main.storyboard in Resources */,
-				2EB9E8E22094441800E4C7CE /* ibm.gif in Resources */,
 				D476AF7E209288D500471620 /* Assets.xcassets in Resources */,
 				D476AF8220929D0C00471620 /* Podfile in Resources */,
-				2EB9E8E02094340400E4C7CE /* 02_gif.gif in Resources */,
 				D476AF8020929C2F00471620 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8680,7 +8669,6 @@
 				D42CDFC72092C509005F9FF7 /* loginController.swift in Sources */,
 				D42CDFC32092B405005F9FF7 /* createAccountTableView.swift in Sources */,
 				D476AF782092662F00471620 /* Users.swift in Sources */,
-				2EB9E8BD2094330400E4C7CE /* gif.swift in Sources */,
 				D42CDFCC2092D33E005F9FF7 /* FIRImage.swift in Sources */,
 				D444F1B720938428000B9C24 /* UsersNotes.swift in Sources */,
 				D42CDFCA2092CD18005F9FF7 /* FirebaseReference.swift in Sources */,
