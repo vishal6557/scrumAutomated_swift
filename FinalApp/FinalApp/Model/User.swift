@@ -33,6 +33,9 @@ class User {
             let firImage = FIRImage(image: profileImage)
             firImage.saveProfileImage(userID, {(error) in
                 // Called whenever the profile image is successfully uploaded - takes time !!
+                let ref = DatabaseReferenceEnum.users(userID: self.userID).reference()
+                // 2. setValue of the reference
+                ref.updateChildValues(["profileImageURL": firImage.downloadURLString])
                 completion(error)
             })
         }

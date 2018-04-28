@@ -9,12 +9,15 @@
 import UIKit
 import Firebase
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, UISearchBarDelegate {
     
     var detailViewController: DetailViewController? = nil
     var objects = [UserNotes]()
+    var filteredObjects = [UserNotes]()
     var userRole: String? = nil
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    var isSearching = false
     
     
     
@@ -42,6 +45,7 @@ class MasterViewController: UITableViewController {
                         let userName = user["name"] as? String ?? ""
                         self.userRole = userType
                         self.navigationItem.title = userName
+                        
                         if( userType == "Admin") {
                             self.fetchDataForAdmin(ref: ref)
                         } else
@@ -51,7 +55,7 @@ class MasterViewController: UITableViewController {
                         
                     }
                 })
-
+                
                 
             } else {
                 // the user hasnt logged in screen
@@ -66,15 +70,16 @@ class MasterViewController: UITableViewController {
             let usersdict = snapshot.value as? NSDictionary
             totalUser = []
             if let usersdic = usersdict {
-            for (key, value) in usersdic {
-                let user = value as? NSDictionary
-                let userID = user?["userID"] as? String ?? ""
-                let name = user?["name"] as? String ?? ""
-                let emailAddress = user?["emailAddress"] as? String ?? ""
-                let userType = user?["userType"] as? String ?? ""
-                let userData = Users(name: name, emailAddress: emailAddress, userType: userType, userID: userID)
-                totalUser.append(userData)
-            }
+                for (key, value) in usersdic {
+                    let user = value as? NSDictionary
+                    let userID = user?["userID"] as? String ?? ""
+                    let name = user?["name"] as? String ?? ""
+                    let emailAddress = user?["emailAddress"] as? String ?? ""
+                    let userType = user?["userType"] as? String ?? ""
+                    let imageURL = user?["profileImageURL"] as? String ?? ""
+                    let userData = Users(name: name, emailAddress: emailAddress, userType: userType, userID: userID, imageURL: imageURL)
+                    totalUser.append(userData)
+                }
             }
         })
         ref.child("notes").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -82,19 +87,19 @@ class MasterViewController: UITableViewController {
             let notesdict = snapshot.value as? NSDictionary
             totalUserNotes = []
             if let notesdic = notesdict {
-            for (key, value) in notesdic{
-                let notes = value as? NSDictionary
-                let noteID = key as? String ?? ""
-                let userID = notes?["userID"] as? String ?? ""
-                let taskNo = notes?["taskNo"] as? Int64 ?? 0
-                let description = notes?["description"] as? String ?? ""
-                let emotion = notes?["emotion"] as? String ?? ""
-                let sentiment = notes?["sentiment"] as? String ?? ""
-                let date = notes?["date"] as? String ?? ""
-                let progress = notes?["progress"] as? Int64 ?? 0
-                let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
-                totalUserNotes.append(UserNote)
-            }
+                for (key, value) in notesdic{
+                    let notes = value as? NSDictionary
+                    let noteID = key as? String ?? ""
+                    let userID = notes?["userID"] as? String ?? ""
+                    let taskNo = notes?["taskNo"] as? Int64 ?? 0
+                    let description = notes?["description"] as? String ?? ""
+                    let emotion = notes?["emotion"] as? String ?? ""
+                    let sentiment = notes?["sentiment"] as? String ?? ""
+                    let date = notes?["date"] as? String ?? ""
+                    let progress = notes?["progress"] as? Int64 ?? 0
+                    let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
+                    totalUserNotes.append(UserNote)
+                }
             }
             self.loadList()
         }) { (error) in
@@ -109,18 +114,18 @@ class MasterViewController: UITableViewController {
             totalUserNotes = []
             if let notesdic = notesdict {
                 for (key, value) in notesdic {
-                let notes = value as? NSDictionary
-                let noteID = key as? String ?? ""
-                let userID = notes?["userID"] as? String ?? ""
-                let taskNo = notes?["taskNo"] as? Int64 ?? 0
-                let description = notes?["description"] as? String ?? ""
-                let emotion = notes?["emotion"] as? String ?? ""
-                let sentiment = notes?["sentiment"] as? String ?? ""
-                let date = notes?["date"] as? String ?? ""
-                let progress = notes?["progress"] as? Int64 ?? 0
-                let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
-                totalUserNotes.append(UserNote)
-            }
+                    let notes = value as? NSDictionary
+                    let noteID = key as? String ?? ""
+                    let userID = notes?["userID"] as? String ?? ""
+                    let taskNo = notes?["taskNo"] as? Int64 ?? 0
+                    let description = notes?["description"] as? String ?? ""
+                    let emotion = notes?["emotion"] as? String ?? ""
+                    let sentiment = notes?["sentiment"] as? String ?? ""
+                    let date = notes?["date"] as? String ?? ""
+                    let progress = notes?["progress"] as? Int64 ?? 0
+                    let UserNote = UserNotes(userID: userID,noteID: noteID, taskNo: Int(taskNo), description: description, emotion: emotion, sentiment: sentiment, date: date, progress: Float(progress));
+                    totalUserNotes.append(UserNote)
+                }
             }
             self.loadList()
         }) { (error) in
@@ -137,11 +142,8 @@ class MasterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let user = userRole{
-            print("I am here ->>>>>>> \(user)")
-        }
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
-
+        
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
         
@@ -151,7 +153,8 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
-       
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
         configureView()
     }
     
@@ -182,7 +185,10 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row]
+                var object = objects[indexPath.row]
+                if isSearching {
+                    object = filteredObjects[indexPath.row]
+                }
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
@@ -198,24 +204,100 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearching {
+            return filteredObjects.count
+        }
+        
         return objects.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        let object = objects[indexPath.row]
-        if( userRole! == "Admin") {
-            let index = totalUser.index(where: { (item) -> Bool in
-                item.userID == object.userID // test if this is the item you're looking for
-            })
-            cell.textLabel!.text = "Name - \(totalUser[index!].name)"
-            cell.detailTextLabel!.text = object.date
-        } else
-        {
-            cell.textLabel!.text = "Task No - \(object.taskNo)"
-            cell.detailTextLabel!.text = object.date
+        if  isSearching {
+            let object = filteredObjects[indexPath.row]
+            if( userRole! == "Admin") {
+                let index = totalUser.index(where: { (item) -> Bool in
+                    item.userID == object.userID // test if this is the item you're looking for
+                })
+                let user = totalUser[index!]
+                let storage = Storage.storage()
+                if user.imageURL != "" {
+                    print("user.imageURL \(user.imageURL)")
+                    
+                    // Create a reference to the file you want to download
+                    
+                    
+                    
+                    storage.reference(forURL: user.imageURL).getMetadata(completion: { (metadata, error) in
+                        let userUrl = metadata?.downloadURL()
+                        let storage = Storage.storage()
+                        if userUrl != nil {
+                            let islandRef = storage.reference(forURL: "\(userUrl)")
+                            
+                            // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                            islandRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                                if let error = error {
+                                    // Uh-oh, an error occurred!
+                                } else {
+                                    // Data for "images/island.jpg" is returned
+                                    cell.imageView?.image = UIImage(data: data!)
+                                    self.loadList()
+                                }
+                            }
+                        }
+                    })
+                }
+                cell.textLabel!.text = "Name - \(user.name)"
+                cell.detailTextLabel!.text = object.date
+            } else
+            {
+                cell.imageView?.image = nil
+                cell.textLabel!.text = "Task No - \(object.taskNo)"
+                cell.detailTextLabel!.text = object.date
+            }
         }
+        else {
+            let object = objects[indexPath.row]
+            if( userRole! == "Admin") {
+                let index = totalUser.index(where: { (item) -> Bool in
+                    item.userID == object.userID // test if this is the item you're looking for
+                })
+                let user = totalUser[index!]
+                let storage = Storage.storage()
+                if user.imageURL != "" {
+                    storage.reference(forURL: user.imageURL).getMetadata(completion: { (metadata, error) in
+                        let userUrl = metadata?.downloadURL()
+                        let storage = Storage.storage()
+                        if userUrl != nil {
+                            let islandRef = storage.reference(forURL: "\(userUrl!)")
+                            
+                            // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                            islandRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                                if let error = error {
+                                    // Uh-oh, an error occurred!
+                                    print(error)
+                                    return
+                                } else {
+                                    // Data for "images/island.jpg" is returned
+                                    cell.imageView?.image = UIImage(data: data!)
+                                    self.loadList()
+                                    return
+                                }
+                            }
+                        }})
+                }
+                cell.textLabel!.text = "Name - \(user.name)"
+                cell.detailTextLabel!.text = object.date
+            } else
+            {
+                cell.imageView?.image = nil
+                cell.textLabel!.text = "Task No - \(object.taskNo)"
+                cell.detailTextLabel!.text = object.date
+            }
+        }
+        
+        
         return cell
     }
     
@@ -226,25 +308,85 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let noteID = objects[indexPath.row].noteID
-            let userID = objects[indexPath.row].userID
             
-            let ref = Database.database().reference()
-            let noteRef = ref.child("notes").child(noteID)
-            let userRef = ref.child("users").child(userID).child("user_notes").child(noteID)
-            noteRef.removeValue { error, _ in
-                print(error)
+            if !isSearching {
+                let noteID = objects[indexPath.row].noteID
+                let userID = objects[indexPath.row].userID
+                
+                let ref = Database.database().reference()
+                let noteRef = ref.child("notes").child(noteID)
+                let userRef = ref.child("users").child(userID).child("user_notes").child(noteID)
+                noteRef.removeValue { error, _ in
+                    print(error)
+                }
+                userRef.removeValue { error, _ in
+                    print(error)
+                }
+                objects.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } else {
+                let noteID = filteredObjects[indexPath.row].noteID
+                let userID = filteredObjects[indexPath.row].userID
+                
+                let ref = Database.database().reference()
+                let noteRef = ref.child("notes").child(noteID)
+                let userRef = ref.child("users").child(userID).child("user_notes").child(noteID)
+                noteRef.removeValue { error, _ in
+                    print(error)
+                }
+                userRef.removeValue { error, _ in
+                    print(error)
+                }
+                filteredObjects.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             }
-            userRef.removeValue { error, _ in
-                print(error)
-            }
-            objects.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            isSearching = false
+            view.endEditing(true)
+            tableView.reloadData()
+        } else {
+            isSearching = true
+            let selectedScope = searchBar.selectedScopeButtonIndex
+            
+            switch selectedScope {
+            case 0:
+                
+                filteredObjects = objects.filter({userNotes -> Bool in
+                    guard let text = searchBar.text else {return false}
+                    let taskNoString = String(userNotes.taskNo)
+                    return taskNoString.contains(text)
+                })
+                break
+            case 1:
+                
+                filteredObjects = objects.filter({userNotes -> Bool in
+                    guard let text = searchBar.text else {return false}
+                    return userNotes.date.contains(text)
+                })
+                break
+            default:
+                break
+            }
+            
+            
+            tableView.reloadData()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        switch selectedScope {
+        case 0: searchBar.placeholder = "Search using Task number..."
+        case 1: searchBar.placeholder = "Search using Date..."
+        default:
+            break
+        }
+        tableView.reloadData()
+    }
     
 }
-

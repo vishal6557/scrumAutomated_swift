@@ -30,6 +30,7 @@ class FIRImage
         // Save that data to the reference
         ref.putData(imageData!, metadata: nil, completion: { (metaData, error) in
             completion(error)
+            self.downloadURL = metaData?.downloadURL()
         })
     }
 }

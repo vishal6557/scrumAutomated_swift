@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FinalApp/User Authentication/WelcomeViewController.swift"
-            timestampString = "546549114.968859"
+            timestampString = "546585300.714096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FinalApp/User Authentication/WelcomeViewController.swift"
-            timestampString = "546549114.970152"
+            timestampString = "546585300.7148499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "19"
@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FinalApp/Model/UsersNotes.swift"
-            timestampString = "546556666.080039"
+            timestampString = "546614504.254819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
@@ -336,6 +336,589 @@
             startingLineNumber = "64"
             endingLineNumber = "64"
             landmarkName = "fetchDataForAdmin(ref:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/Model/User.swift"
+            timestampString = "546614504.255263"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "save(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/Model/User.swift"
+            timestampString = "546614504.255622"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "save(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/Model/FIRImage.swift"
+            timestampString = "546614504.2557271"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "saveProfileImage(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/Controllers/MasterViewController.swift"
+            timestampString = "546614504.256068"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "fetchDataForAdmin(ref:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in FinalApp.MasterViewController.fetchDataForAdmin(ref: __ObjC.DatabaseReference) -&gt; ()"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/Controllers/MasterViewController.swift"
+                  timestampString = "546562996.2474149"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "7237">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #5 : @autoclosure () throws -&gt; Swift.String in closure #1 (__ObjC.DataSnapshot) -&gt; () in FinalApp.MasterViewController.fetchDataForAdmin(ref: __ObjC.DatabaseReference) -&gt; ()"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/Controllers/MasterViewController.swift"
+                  timestampString = "546562996.24922"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/Controllers/MasterViewController.swift"
+            timestampString = "546614504.256956"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
+            landmarkName = "searchBar(_:textDidChange:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/User Authentication/createAccountTableView.swift"
+            timestampString = "546614504.257425"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "createAccountTableView"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "variable initialization expression of FinalApp.createAccountTableView.pickerView : __ObjC.UIPickerView"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546585300.887035"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.pickerView.getter : __ObjC.UIPickerView"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546585300.889886"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "109">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.init(style: __C.UITableViewStyle) -&gt; FinalApp.createAccountTableView"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546585300.892854"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "1077">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; FinalApp.createAccountTableView"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546585300.895743"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "1050">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;FinalApp.createAccountTableView&gt;"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546585300.898688"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "949">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/User Authentication/createAccountTableView.swift"
+            timestampString = "546614504.25778"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/User Authentication/createAccountTableView.swift"
+            timestampString = "546614504.257875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "numberOfComponents(in:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/User Authentication/createAccountTableView.swift"
+            timestampString = "546614504.257955"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "pickerView(_:numberOfRowsInComponent:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/User Authentication/createAccountTableView.swift"
+            timestampString = "546614504.2580301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "createAccountTableView"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.datas.getter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546586402.46811"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.datas.setter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546586402.470885"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "230">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.init(style: __C.UITableViewStyle) -&gt; FinalApp.createAccountTableView"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546586402.473673"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "1540">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; FinalApp.createAccountTableView"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546586402.476118"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "1509">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;FinalApp.createAccountTableView&gt;"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546586402.478416"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "1407">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/User Authentication/createAccountTableView.swift"
+            timestampString = "546614504.2581021"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "pickerView(_:numberOfRowsInComponent:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/User Authentication/createAccountTableView.swift"
+            timestampString = "546614504.258165"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "createAccountTableView"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/User Authentication/createAccountTableView.swift"
+            timestampString = "546614504.2582231"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "pickerView(_:titleForRow:forComponent:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/User Authentication/createAccountTableView.swift"
+            timestampString = "546614504.258279"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "pickerView(_:titleForRow:forComponent:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/User Authentication/createAccountTableView.swift"
+            timestampString = "546614504.258334"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "pickerView(_:titleForRow:forComponent:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.datas.getter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546587836.572279"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.datas.setter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546587836.574394"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "230">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.init(style: __C.UITableViewStyle) -&gt; FinalApp.createAccountTableView"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546587836.576987"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "1540">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; FinalApp.createAccountTableView"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546587836.57864"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "1509">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FinalApp.createAccountTableView.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;FinalApp.createAccountTableView&gt;"
+                  moduleName = "FinalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/ubuntu/Desktop/SmartPhone%20/scrumAutomated_swift/FinalApp/FinalApp/User%20Authentication/createAccountTableView.swift"
+                  timestampString = "546587836.580158"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "1407">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/User Authentication/createAccountTableView.swift"
+            timestampString = "546614504.258388"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/Controllers/MasterViewController.swift"
+            timestampString = "546614504.258448"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
+            landmarkName = "tableView(_:commit:forRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/Controllers/MasterViewController.swift"
+            timestampString = "546614504.258862"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
+            landmarkName = "tableView(_:commit:forRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/Controllers/MasterViewController.swift"
+            timestampString = "546614504.259912"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FinalApp/Controllers/MasterViewController.swift"
+            timestampString = "546614504.26059"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
