@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MicrophoneBasicViewController" customModule="FinalApp" customModuleProvider="target">
             <connections>
+                <outlet property="back" destination="7J3-WV-mr8" id="Ziz-Jj-Yab"/>
+                <outlet property="gifImage" destination="Lfe-LV-wbH" id="rFB-9F-r9f"/>
                 <outlet property="microphoneButton" destination="wAQ-Gp-pGL" id="xeH-f3-WMN"/>
                 <outlet property="textView" destination="VDp-dD-uRK" id="QiC-kQ-ZXj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -18,34 +21,66 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAQ-Gp-pGL">
-                    <rect key="frame" x="20" y="617" width="335" height="30"/>
-                    <state key="normal" title="Start Microphone"/>
-                    <connections>
-                        <action selector="didPressMicrophoneButton:" destination="-1" eventType="touchUpInside" id="Sui-UT-u3c"/>
-                    </connections>
-                </button>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Start the microphone to view a transcription..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VDp-dD-uRK">
-                    <rect key="frame" x="20" y="37" width="335" height="572"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tVm-tG-mn2">
+                    <rect key="frame" x="0.0" y="18" width="320" height="550"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Start the microphone to view a transcription..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VDp-dD-uRK">
+                            <rect key="frame" x="20" y="95" width="280" height="105"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="105" id="S8V-oG-Bqr"/>
+                            </constraints>
+                            <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAQ-Gp-pGL">
+                            <rect key="frame" x="20" y="500" width="280" height="30"/>
+                            <state key="normal" title="Start Microphone"/>
+                            <connections>
+                                <action selector="didPressMicrophoneButton:" destination="-1" eventType="touchUpInside" id="Sui-UT-u3c"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7J3-WV-mr8">
+                            <rect key="frame" x="20" y="30" width="34" height="30"/>
+                            <state key="normal" title="Back"/>
+                            <connections>
+                                <action selector="backButton:" destination="-1" eventType="touchUpInside" id="S5L-ek-7Lz"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lfe-LV-wbH">
+                            <rect key="frame" x="0.0" y="208" width="320" height="219"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="7J3-WV-mr8" firstAttribute="leading" secondItem="tVm-tG-mn2" secondAttribute="leading" constant="20" id="3cG-XV-XLC"/>
+                        <constraint firstItem="VDp-dD-uRK" firstAttribute="leading" secondItem="tVm-tG-mn2" secondAttribute="leading" constant="20" symbolic="YES" id="5iV-oq-uF7"/>
+                        <constraint firstAttribute="trailing" secondItem="wAQ-Gp-pGL" secondAttribute="trailing" constant="20" symbolic="YES" id="H4Z-it-DkU"/>
+                        <constraint firstItem="Lfe-LV-wbH" firstAttribute="top" secondItem="VDp-dD-uRK" secondAttribute="bottom" constant="8" id="JXZ-vt-OD6"/>
+                        <constraint firstItem="VDp-dD-uRK" firstAttribute="centerX" secondItem="wAQ-Gp-pGL" secondAttribute="centerX" id="PnN-7v-blU"/>
+                        <constraint firstItem="Lfe-LV-wbH" firstAttribute="leading" secondItem="tVm-tG-mn2" secondAttribute="leading" id="TDn-5K-pXV"/>
+                        <constraint firstItem="VDp-dD-uRK" firstAttribute="top" secondItem="7J3-WV-mr8" secondAttribute="bottom" constant="35" id="XCY-Iz-YcB"/>
+                        <constraint firstAttribute="bottom" secondItem="wAQ-Gp-pGL" secondAttribute="bottom" constant="20" symbolic="YES" id="XSl-fX-Y1o"/>
+                        <constraint firstItem="wAQ-Gp-pGL" firstAttribute="leading" secondItem="tVm-tG-mn2" secondAttribute="leading" constant="20" symbolic="YES" id="e6e-7h-9YX"/>
+                        <constraint firstAttribute="trailing" secondItem="VDp-dD-uRK" secondAttribute="trailing" constant="20" symbolic="YES" id="eGG-qF-2DW"/>
+                        <constraint firstItem="7J3-WV-mr8" firstAttribute="top" secondItem="tVm-tG-mn2" secondAttribute="topMargin" constant="20" id="gKc-UR-oAQ"/>
+                        <constraint firstItem="wAQ-Gp-pGL" firstAttribute="top" secondItem="Lfe-LV-wbH" secondAttribute="bottom" constant="73" id="n6t-VB-Tlk"/>
+                        <constraint firstAttribute="trailing" secondItem="Lfe-LV-wbH" secondAttribute="trailing" id="s6e-p5-aG4"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="VDp-dD-uRK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="4TG-HR-vW3"/>
-                <constraint firstItem="wAQ-Gp-pGL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="5Oe-Aw-Kfa"/>
-                <constraint firstItem="VDp-dD-uRK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" symbolic="YES" id="8FP-4b-BbC"/>
-                <constraint firstAttribute="bottom" secondItem="wAQ-Gp-pGL" secondAttribute="bottom" constant="20" symbolic="YES" id="9cA-64-wJB"/>
-                <constraint firstAttribute="trailing" secondItem="VDp-dD-uRK" secondAttribute="trailing" constant="20" symbolic="YES" id="9fS-gG-FcA"/>
-                <constraint firstAttribute="trailing" secondItem="wAQ-Gp-pGL" secondAttribute="trailing" constant="20" symbolic="YES" id="Z3o-12-Gor"/>
-                <constraint firstItem="wAQ-Gp-pGL" firstAttribute="top" secondItem="VDp-dD-uRK" secondAttribute="bottom" constant="8" symbolic="YES" id="g1l-lC-8EC"/>
+                <constraint firstAttribute="bottom" secondItem="tVm-tG-mn2" secondAttribute="bottom" id="2Wf-sx-XMi"/>
+                <constraint firstItem="tVm-tG-mn2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="18" id="Udn-PU-LsR"/>
+                <constraint firstAttribute="trailing" secondItem="tVm-tG-mn2" secondAttribute="trailing" id="YBU-bo-UkD"/>
+                <constraint firstItem="tVm-tG-mn2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="asH-S6-9Ja"/>
             </constraints>
-            <point key="canvasLocation" x="33.5" y="163.5"/>
+            <point key="canvasLocation" x="33" y="163"/>
         </view>
     </objects>
 </document>
