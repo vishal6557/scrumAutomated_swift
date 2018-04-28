@@ -24,15 +24,11 @@ class MicrophoneBasicViewController: UIViewController {
     var isStreaming = false
     var resultsOfSpeaking = ""
     
-    @IBOutlet weak var gifImage: UIImageView!
-    
-    @IBOutlet weak var back: UIButton!
     @IBOutlet weak var microphoneButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gifImage.loadGif(name: "ibm")
         speechToText = SpeechToText(
             username: Credentials.SpeechToTextUsername,
             password: Credentials.SpeechToTextPassword
@@ -41,9 +37,7 @@ class MicrophoneBasicViewController: UIViewController {
     
     
     
-    @IBAction func backButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
+    
     
     @IBAction func didPressMicrophoneButton(_ sender: UIButton) {
         if !isStreaming {
@@ -58,12 +52,8 @@ class MicrophoneBasicViewController: UIViewController {
                 self.resultsOfSpeaking = results.bestTranscript
             }
         } else {
+            
             speechToText.stopRecognizeMicrophone()
-            print("Priting the count",self.resultsOfSpeaking.count)
-            if(self.resultsOfSpeaking.count<10){
-                displayAlert(title: "Not enough", message: "Unable to interprete less words")
-            }
-            else{
             
             print("Calling Allert")
             let alert = UIAlertController(title: "Task", message:"Enter your Task Number", preferredStyle: .alert)
@@ -90,16 +80,14 @@ class MicrophoneBasicViewController: UIViewController {
                 
                 let progressField = alert.textFields![1]
                 let progress: Float? = Float(progressField.text!)
-                if (taskNo != nil && progress != nil && Int(progress!) < 100) {
+                if (taskNo != nil && progress != nil) {
                     // Successfully converted String to Int
                     print(taskNo!)
                     self.fetchDataFromNLU(taskNo: taskNo!, progress: progress!)
                 }
-                else{
-                    displayAlert(title: "Empty", message: "Task and Progress cannot be empty or Progress should be less than 100")
-                }
                  self.dismiss(animated: true, completion:nil)
             })
+            
             
             let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (action) -> Void in})
             
@@ -107,7 +95,7 @@ class MicrophoneBasicViewController: UIViewController {
             alert.addAction(cancel)
             
             alert.show()
-            }
+            
             isStreaming = false
             microphoneButton.setTitle("Start Microphone", for: .normal)
         }
