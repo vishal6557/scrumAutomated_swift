@@ -9,12 +9,15 @@
 import UIKit
 import Firebase
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, UISearchBarDelegate {
     
     var detailViewController: DetailViewController? = nil
     var objects = [UserNotes]()
+    var filteredObjects = [UserNotes]()
     var userRole: String? = nil
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    var isSearching = false
     
     
     
@@ -149,7 +152,8 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
-        
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
         configureView()
     }
     
@@ -180,7 +184,10 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row]
+                var object = objects[indexPath.row]
+                if isSearching {
+                    object = filteredObjects[indexPath.row]
+                }
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
@@ -196,48 +203,93 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearching {
+            return filteredObjects.count
+        }
+        
         return objects.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        let object = objects[indexPath.row]
-        if( userRole! == "Admin") {
-            let index = totalUser.index(where: { (item) -> Bool in
-                item.userID == object.userID // test if this is the item you're looking for
-            })
-            let user = totalUser[index!]
-            let storage = Storage.storage()
-            if user.imageURL != "" {
-                storage.reference(forURL: user.imageURL).getMetadata(completion: { (metadata, error) in
-                    let userUrl = metadata?.downloadURL()
-                    if userUrl != nil {
-                        URLSession.shared.dataTask(with: userUrl!, completionHandler: {(data, response,error) in
-                            if error != nil {
-                                print(error)
-                                return
-                            }
-                            DispatchQueue.main.async(execute: {
-                                cell.imageView?.image = UIImage(data: data!)
-                                cell.imageView?.layer.cornerRadius = 20
-                                cell.imageView?.layer.masksToBounds = true
-                                self.loadList()
-                            })
-                        } ).resume()
-                    }
+        if  isSearching {
+            let object = filteredObjects[indexPath.row]
+            if( userRole! == "Admin") {
+                let index = totalUser.index(where: { (item) -> Bool in
+                    item.userID == object.userID // test if this is the item you're looking for
                 })
-                
-                
-                //cell.imageView?.image = UIImage(named : "scrum")
+                let user = totalUser[index!]
+                let storage = Storage.storage()
+                if user.imageURL != "" {
+                    print("user.imageURL \(user.imageURL)")
+                    storage.reference(forURL: user.imageURL).getMetadata(completion: { (metadata, error) in
+                        let userUrl = metadata?.downloadURL()
+                        if userUrl != nil {
+                            URLSession.shared.dataTask(with: userUrl!, completionHandler: {(data, response,error) in
+                                if error != nil {
+                                    print(error)
+                                    return
+                                }
+                                DispatchQueue.main.async(execute: {
+                                    cell.imageView?.image = UIImage(data: data!)
+                                    self.loadList()
+                                })
+                            } ).resume()
+                        }
+                    })
+                    
+                    
+                    //cell.imageView?.image = UIImage(named : "scrum")
+                }
+                cell.textLabel!.text = "Name - \(user.name)"
+                cell.detailTextLabel!.text = object.date
+            } else
+            {
+                cell.imageView?.image = nil
+                cell.textLabel!.text = "Task No - \(object.taskNo)"
+                cell.detailTextLabel!.text = object.date
             }
-            cell.textLabel!.text = "Name - \(user.name)"
-            cell.detailTextLabel!.text = object.date
-        } else
-        {
-            cell.textLabel!.text = "Task No - \(object.taskNo)"
-            cell.detailTextLabel!.text = object.date
         }
+        else {
+            let object = objects[indexPath.row]
+            if( userRole! == "Admin") {
+                let index = totalUser.index(where: { (item) -> Bool in
+                    item.userID == object.userID // test if this is the item you're looking for
+                })
+                let user = totalUser[index!]
+                let storage = Storage.storage()
+                if user.imageURL != "" {
+                    storage.reference(forURL: user.imageURL).getMetadata(completion: { (metadata, error) in
+                        let userUrl = metadata?.downloadURL()
+                        if userUrl != nil {
+                            URLSession.shared.dataTask(with: userUrl!, completionHandler: {(data, response,error) in
+                                if error != nil {
+                                    print(error)
+                                    return
+                                }
+                                DispatchQueue.main.async(execute: {
+                                    cell.imageView?.image = UIImage(data: data!)
+                                    self.loadList()
+                                })
+                            } ).resume()
+                        }
+                    })
+                    
+                    
+                    //cell.imageView?.image = UIImage(named : "scrum")
+                }
+                cell.textLabel!.text = "Name - \(user.name)"
+                cell.detailTextLabel!.text = object.date
+            } else
+            {
+                cell.imageView?.image = nil
+                cell.textLabel!.text = "Task No - \(object.taskNo)"
+                cell.detailTextLabel!.text = object.date
+            }
+        }
+        
+       
         return cell
     }
     
@@ -248,22 +300,85 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let noteID = objects[indexPath.row].noteID
-            let userID = objects[indexPath.row].userID
             
-            let ref = Database.database().reference()
-            let noteRef = ref.child("notes").child(noteID)
-            let userRef = ref.child("users").child(userID).child("user_notes").child(noteID)
-            noteRef.removeValue { error, _ in
-                print(error)
+            if !isSearching {
+                let noteID = objects[indexPath.row].noteID
+                let userID = objects[indexPath.row].userID
+                
+                let ref = Database.database().reference()
+                let noteRef = ref.child("notes").child(noteID)
+                let userRef = ref.child("users").child(userID).child("user_notes").child(noteID)
+                noteRef.removeValue { error, _ in
+                    print(error)
+                }
+                userRef.removeValue { error, _ in
+                    print(error)
+                }
+                objects.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } else {
+                let noteID = filteredObjects[indexPath.row].noteID
+                let userID = filteredObjects[indexPath.row].userID
+                
+                let ref = Database.database().reference()
+                let noteRef = ref.child("notes").child(noteID)
+                let userRef = ref.child("users").child(userID).child("user_notes").child(noteID)
+                noteRef.removeValue { error, _ in
+                    print(error)
+                }
+                userRef.removeValue { error, _ in
+                    print(error)
+                }
+                filteredObjects.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             }
-            userRef.removeValue { error, _ in
-                print(error)
-            }
-            objects.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            isSearching = false
+            view.endEditing(true)
+            tableView.reloadData()
+        } else {
+            isSearching = true
+            let selectedScope = searchBar.selectedScopeButtonIndex
+            
+            switch selectedScope {
+            case 0:
+                
+                filteredObjects = objects.filter({userNotes -> Bool in
+                    guard let text = searchBar.text else {return false}
+                    let taskNoString = String(userNotes.taskNo)
+                    return taskNoString.contains(text)
+                })
+                break
+            case 1:
+                
+                filteredObjects = objects.filter({userNotes -> Bool in
+                    guard let text = searchBar.text else {return false}
+                    return userNotes.date.contains(text)
+                })
+                break
+            default:
+                break
+            }
+            
+            
+            tableView.reloadData()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        switch selectedScope {
+        case 0: searchBar.placeholder = "Search using Task number..."
+        case 1: searchBar.placeholder = "Search using Date..."
+        default:
+            break
+        }
+        tableView.reloadData()
+    }
+    
 }
