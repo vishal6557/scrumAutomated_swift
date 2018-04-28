@@ -45,6 +45,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
                         let userName = user["name"] as? String ?? ""
                         self.userRole = userType
                         self.navigationItem.title = userName
+                        
                         if( userType == "Admin") {
                             self.fetchDataForAdmin(ref: ref)
                         } else
@@ -281,6 +282,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
                                     // Data for "images/island.jpg" is returned
                                     cell.imageView?.image = UIImage(data: data!)
                                     self.loadList()
+                                    return
                                 }
                             }
                         }})

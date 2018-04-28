@@ -198,11 +198,6 @@ class createAccountTableView: UITableViewController,UIPickerViewDelegate,UIPicke
             })
             
         }
-        
-//        validationFunction(emailAddressData:String,nameData:String,userTypeData:String,passwordData:String,confirmPasswordData:String)
-        
-        
-        
         print("Inside registerUser")
     }
 
