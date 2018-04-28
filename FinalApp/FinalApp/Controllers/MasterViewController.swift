@@ -223,24 +223,29 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
                 let storage = Storage.storage()
                 if user.imageURL != "" {
                     print("user.imageURL \(user.imageURL)")
+                    
+                    // Create a reference to the file you want to download
+                    
+                    
+                    
                     storage.reference(forURL: user.imageURL).getMetadata(completion: { (metadata, error) in
                         let userUrl = metadata?.downloadURL()
+                        let storage = Storage.storage()
                         if userUrl != nil {
-                            URLSession.shared.dataTask(with: userUrl!, completionHandler: {(data, response,error) in
-                                if error != nil {
-                                    print(error)
-                                    return
-                                }
-                                DispatchQueue.main.async(execute: {
+                            let islandRef = storage.reference(forURL: "\(userUrl)")
+                            
+                            // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                            islandRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                                if let error = error {
+                                    // Uh-oh, an error occurred!
+                                } else {
+                                    // Data for "images/island.jpg" is returned
                                     cell.imageView?.image = UIImage(data: data!)
                                     self.loadList()
-                                })
-                            } ).resume()
+                                }
+                            }
                         }
                     })
-                    
-                    
-                    //cell.imageView?.image = UIImage(named : "scrum")
                 }
                 cell.textLabel!.text = "Name - \(user.name)"
                 cell.detailTextLabel!.text = object.date
@@ -262,22 +267,23 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
                 if user.imageURL != "" {
                     storage.reference(forURL: user.imageURL).getMetadata(completion: { (metadata, error) in
                         let userUrl = metadata?.downloadURL()
+                        let storage = Storage.storage()
                         if userUrl != nil {
-                            URLSession.shared.dataTask(with: userUrl!, completionHandler: {(data, response,error) in
-                                if error != nil {
+                            let islandRef = storage.reference(forURL: "\(userUrl!)")
+                            
+                            // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                            islandRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                                if let error = error {
+                                    // Uh-oh, an error occurred!
                                     print(error)
                                     return
-                                }
-                                DispatchQueue.main.async(execute: {
+                                } else {
+                                    // Data for "images/island.jpg" is returned
                                     cell.imageView?.image = UIImage(data: data!)
                                     self.loadList()
-                                })
-                            } ).resume()
-                        }
-                    })
-                    
-                    
-                    //cell.imageView?.image = UIImage(named : "scrum")
+                                }
+                            }
+                        }})
                 }
                 cell.textLabel!.text = "Name - \(user.name)"
                 cell.detailTextLabel!.text = object.date
@@ -289,7 +295,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
             }
         }
         
-       
+        
         return cell
     }
     
